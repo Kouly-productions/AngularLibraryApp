@@ -1,0 +1,52 @@
+.middle{
+    margin-top: 10px;
+    background-color: rgba(119, 119, 119, 0.432);
+    height: 80vh;
+    width: 60vw;
+    box-shadow: 0 0 50px rgba(87, 87, 87, 0.685);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.element{
+    margin-left: 10px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 30px rgba(255, 0, 179, 0.685);
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.element-wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center; /* Tilføjet for at centrere elementerne */
+    width: 65%;
+    height: 17%;
+}
+
+#addtolist{
+    --bs-btn-bg: rgb(0, 163, 0); 
+    --bs-btn-hover-bg: rgb(0, 94, 0);
+}
+
+#Infolist{
+    --bs-btn-bg: rgb(105, 105, 105); 
+    --bs-btn-hover-bg: rgb(70, 70, 70);
+}
+
+button{
+    width: 150px;
+    height: 40px;
+    margin-left: 20px;
+}
