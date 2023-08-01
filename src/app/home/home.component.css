@@ -1,0 +1,93 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.mat-mdc-card{
+    background-color: transparent;
+}
+
+.middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(119, 119, 119, 0.432);
+    border-radius: 20px;
+    height: 40vh;
+    width: 90vw;
+    box-shadow: 0 0 50px rgba(87, 87, 87, 0.685);
+    overflow: hidden;
+    position: relative;
+}
+
+.middle::before, .middle::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background: inherit;
+}
+
+.middle::before { transform: translateX(100%); }
+.middle::after { transform: translateX(-200%); }
+
+.elements-wrapper {
+    display: flex;
+    width: max-content;
+    position: relative;
+    left: 3%; /* Starts from the right side of the screen */
+    animation: marquee 20s linear infinite;
+    width: 100%;
+    height: 100%;
+}
+
+.element{
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    box-shadow: 0 0 30px rgba(255, 0, 179, 0.685);
+    display: flex;
+    justify-content: center;
+    margin-right: 10%;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-92%); }
+}
+
+h1{
+    font-weight: bolder;
+    color: white;
+    font-size: 30px;
+}
+
+h2{
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 5px purple, 
+                 -2px -2px 5px purple,
+                 2px -2px 5px purple,
+                 -2px 2px 5px purple;
+  }
+
+#element1{
+    background-image: url('/assets/IMG/Ikke-navngivet-1.png');
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 10px;
+}
+#element2{
+    background-image: url('/assets/IMG/Ikke-navngivet-1@1x_1-1.png');
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 10px;
+}
+#element3{
+    background-image: url('/assets/IMG/Ikke-navngivet-1-Gendannet.png');
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 10px;
+}
