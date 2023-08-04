@@ -6,6 +6,8 @@ import { GamesComponent } from './games/games.component';
 import { BooksComponent } from './books/books.component';
 import { ComicsComponent } from './comics/comics.component';
 import { MyListComponent } from './my-list/my-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'games', component: GamesComponent },
   { path: 'books', component: BooksComponent },
   { path: 'comics', component: ComicsComponent },
-  { path: 'mylist', component: MyListComponent }
+  { path: 'mylist', component: MyListComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
