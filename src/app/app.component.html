@@ -1,6 +1,5 @@
 <header class="header-nav">
   <h1>Administration</h1>
-  <div id="line"></div>
   <div class="navbar">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -28,9 +27,24 @@
               <a class="nav-link" href="#" [routerLink]="['/mylist']" routerLinkActive="active">My List</a>
             </li>
           </ul>
+           <!--Login Dropdown-->
+           <div class="navbar-nav" >
+            <div class="nav-item-dropdown-login-item">
+              <button class="nav-link dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" (click)="showDropdown = !showDropdown">
+                <img src="/assets/IMG/komNU.png" alt="Login Icon" width="50" height="50" draggable="false"
+                  class="d-inline-block-align-top">
+              </button>
+              <div class="dropdown-menu" [class.show]="showDropdown" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#" [routerLink]="['/register']" routerLinkActive="active">Register</a>
+                <a class="dropdown-item" href="#" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
+    <div id="line"></div>
   </div>
   <router-outlet></router-outlet>
 </header>

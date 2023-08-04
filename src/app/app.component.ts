@@ -10,7 +10,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class AppComponent {
   title: string = "Something cool";
   favoriteAnimal: string = "Dog";
-
+  showDropdown: boolean = false;
   constructor(private toast: NgToastService) {
   }
   showSuccess() {
