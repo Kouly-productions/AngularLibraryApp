@@ -20,6 +20,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+//Make us able to use http requests 
+import {HttpClientModule} from '@angular/common/http';
+//Does so it's possible to scroll
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -56,7 +59,8 @@ bootstrapApplication(AppComponent, {
     ToastrModule.forRoot(),
     ToastrModule,
     HomeComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
