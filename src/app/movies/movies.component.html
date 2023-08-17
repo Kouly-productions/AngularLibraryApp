@@ -1,6 +1,5 @@
 <mat-card class="mb-4 container">
     <div class="middle">
-        <button (click)="getPosts()"></button>
         <div *ngFor="let post of posts | async" class="element-wrapper">
             <div class="element">
                 <h2>{{ post.title }}</h2>

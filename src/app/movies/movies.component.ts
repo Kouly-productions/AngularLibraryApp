@@ -32,7 +32,9 @@ export class MoviesComponent {
 
   ngOnInit(): void {
     //this.APIMovieCaller(); //Call API as soon the user goes to the Movie component
+    this.getPosts();
   }
+
 
   AddedToList(): void {
     if(!this.isDatabaseConnected) {
@@ -46,9 +48,3 @@ export class MoviesComponent {
     this.toastr.error('No API linked yet', 'ERROR');
   }
 }
-
-  export class Movie {
-    title: string;
-    poster: string;
-    genre: string;
-  }
