@@ -10,8 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 //Make us able to use http requests 
-import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-movies',
@@ -34,23 +35,27 @@ export class MoviesComponent {
   //Array to store the movie data
   movieData: any[] = [];
 
+  private scrollSubscription: any;
+
   //Constants to access the movies data
   readonly OMDB_ROOT_URL = 'https://www.omdbapi.com';
   readonly OMDB_API_KEY = 'ac80372a';
 
   //List of known IMDB IDs to fetch details. (Hardcoded, change this)
-  readonly knowIMDBIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt9603212']
+  readonly knowIMDBIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt5433140', 'tt9348554', 'tt6718170', 'tt2906216', 
+  'tt5971474', 'tt10366206', 'tt4589218', 'tt5090568', 'tt0439572', 'tt1745960', 'tt13904644', 'tt0816692', 'tt0468569', 'tt1877830',
+  'tt0120338', 'tt1517268']
 
 
   //Constructor to use the ToastrService and HttpClient
-  constructor(private toastr: ToastrService, private http: HttpClient) {}
+  constructor(private toastr: ToastrService, private apiService: ApiService) {}
 
   //Function to get the movie data from the API
   getMovieData() {
     if(this.movieId) {
-      const url = `${this.OMDB_ROOT_URL}?i=${this.movieId}&apikey=${this.OMDB_API_KEY}`;
-      //Make a get request to the API
-      this.http.get(url).subscribe(
+      //Using the api service to fetch data
+      this.apiService.fetchData(this.OMDB_ROOT_URL, this.movieId, this.OMDB_API_KEY)
+      .subscribe(
         (data: any) => {
           //On success, push the data to the movieData array
           this.movieData.push(data);
@@ -71,13 +76,44 @@ export class MoviesComponent {
     // Reset the movieData array
     this.movieData = [];
 
-    //Loop through the list of known IMDB IDs
-    for (let id of this.knowIMDBIds) {
-      this.movieId = id;
+    const shuffledIds = [...this.knowIMDBIds].sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < 5; i++) {
+      this.movieId = shuffledIds[i];
       this.getMovieData();
+    }
+    /*
+    //Loop through the list of known IMDB IDs
+    for (let i = 0; i < 5 && i < this.knowIMDBIds.length; i++) {
+      this.movieId = this.knowIMDBIds[i];
+      this.getMovieData();
+    }
+    */
+  }
+
+  ngAfterViewInit() {
+    const middleElement = document.querySelector('.middle');
+    if(middleElement) {
+    this.scrollSubscription = fromEvent(middleElement, 'scroll').subscribe(() => this.onScroll());
     }
   }
 
+  ngOnDestroy() {
+    this.scrollSubscription.unsubscribe();
+  }
+
+  lastLoadedIndex = 5;
+
+  onScroll() {
+    const middleElement = document.querySelector('.middle');
+    if (middleElement && (middleElement.scrollHeight - middleElement.scrollTop) <= middleElement.clientHeight) {
+      for (let i = this.lastLoadedIndex; i < this.lastLoadedIndex + 4 && i < this.knowIMDBIds.length; i++) {
+        this.movieId = this.knowIMDBIds[i];
+        this.getMovieData();
+      }
+      this.lastLoadedIndex += 4;
+    }
+  }
 
   AddedToList(): void {
     if(!this.isDatabaseConnected) {
