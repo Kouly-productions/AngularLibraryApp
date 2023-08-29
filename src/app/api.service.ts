@@ -12,4 +12,5 @@ export class ApiService {
     const url = `${apiRoot}?i=${id}&apikey=${apiKey}`;
     return this.http.get(url);
   }
+
 }
