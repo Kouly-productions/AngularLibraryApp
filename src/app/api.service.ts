@@ -13,4 +13,9 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  fetchGameData(id: string, apiKey: string): Observable<any> {
+    const apiRoot = '/rawg-api'; // Specific to RAWG API
+    const url = `${apiRoot}/api/games?i=${id}&apikey=${apiKey}`; // Replace '/api/games' with the actual endpoint
+    return this.http.get(url);
+  }  
 }

@@ -1,47 +1,48 @@
 import { Component } from '@angular/core';
-import { NgToastService } from 'ng-angular-popup';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import {HttpClient} from '@angular/common/http';
-import { Post } from './GamesPost';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../api.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.css']
 })
-export class GamesComponent {
-  isDatabaseConnected: boolean = false;
-  movieTitle: string = '';
-  moviePoster: string = '';
-  movieData: any[] = [];
+export class GamesComponent extends BaseComponent {
+  //Variables to store the game data
+  gameId: string = '';
+  gameTitle: string = '';
+  gamePoster: string = '';
+  gameData: any[] = [];
 
-  readonly ROOT_URL = 'https://jsonplaceholder.typicode.com'
+  //Constants to access the games data
+  readonly API_ROOT_URL = '/rawg-api';
+  readonly API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
 
-  posts: Observable<Post[]>;
-
-  constructor(private toastr: ToastrService, private http: HttpClient) {}
-  title = 'api-angular';
-  getPosts()
-  {
-    this.posts = this.http.get<Post[]>(this.ROOT_URL + '/posts')
+  constructor(toastr: ToastrService, private apiService: ApiService) {
+    super(toastr);
   }
 
-  ngOnInit(): void {
-    //this.APIMovieCaller(); //Call API as soon the user goes to the Movie component
-    this.getPosts();
+  override ngOnInit(): void {
+    console.log("ngOnInit called");
+    this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215',];
+    this.loadData(5);
   }
 
-  AddedToList(): void {
-    if(!this.isDatabaseConnected) {
-      this.toastr.error('No database linked yet', 'ERROR');
-    } else {
-      this.toastr.success('Sent to My list', 'SUCCESS');
+    //Function to get the game data from the API
+    override fetchData(gameId: string): void {
+      this.apiService.fetchGameData(gameId, this.API_KEY)
+      .subscribe(
+        data => {
+          console.log("Fetched Data ", data)
+          this.gameData.push(data);
+          this.loadedIds.add(gameId);
+          this.isAPIWorking = true;
+        },
+        error => {
+          console.log("Error ", error)
+          this.toastr.error('API is not working', 'ERROR');
+        }
+      );
     }
-  }
-
-  InfoAboutMovie(): void {
-    this.toastr.error('No API linked yet', 'ERROR');
-  }
 }

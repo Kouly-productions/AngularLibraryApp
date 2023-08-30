@@ -1,0 +1,11 @@
+{
+    "/rawg-api": {
+      "target": "https://rawg.io",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/rawg-api": ""
+      }
+    }
+  }
+  
