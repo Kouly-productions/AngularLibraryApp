@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import {HttpClient} from '@angular/common/http';
 
