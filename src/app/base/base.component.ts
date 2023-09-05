@@ -8,6 +8,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
   styleUrls: ['./base.component.css']
 })
 
+
 export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isDatabaseConnected: boolean = false;
@@ -18,6 +19,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   private scrollSubscription: any;
 
   constructor(protected toastr: ToastrService) { }
+
 
   ngOnInit(): void {
     

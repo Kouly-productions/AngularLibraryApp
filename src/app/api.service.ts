@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  readonly Game_API_ROOT_URL = 'https://rawg.io/api';
+  readonly Game_API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
   constructor(private http: HttpClient) { }
 
   fetchData(apiRoot: string, id: string, apiKey: string): Observable<any> {
@@ -13,9 +15,9 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  fetchGameData(id: string, apiKey: string): Observable<any> {
-    const apiRoot = '/rawg-api'; // Specific to RAWG API
-    const url = `${apiRoot}/api/games?i=${id}&apikey=${apiKey}`; // Replace '/api/games' with the actual endpoint
+  fetchGameData(id: string): Observable<any> {
+    const url = `${this.Game_API_ROOT_URL}/games?i=${id}&key=${this.Game_API_KEY}`;
+    console.log("URL being used: ", url);
     return this.http.get(url);
-  }  
+  }
 }

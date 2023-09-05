@@ -2,7 +2,8 @@
     <div class="middle">
         <div *ngFor="let game of gameData" class="element-wrapper">
             <div class="element">
-                <h2>{{ game.title }}</h2>
+                <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
+                <h2>{{ game.name }}</h2>
             </div>
             <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
             <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>

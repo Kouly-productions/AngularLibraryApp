@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core';
 //Makes us able to make notifications such as errors and success messages
 import { ToastrService } from 'ngx-toastr';
 
-//Make us able to use http requests 
-import { fromEvent } from 'rxjs';
-
 //Enables us to use API
 import { ApiService } from '../api.service';
 import { BaseComponent } from '../base/base.component';
