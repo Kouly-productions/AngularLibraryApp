@@ -36,9 +36,10 @@ export class MoviesComponent extends BaseComponent {
 
     this.loadData(5);
   }
+  
 
-  override fetchData(movieId: string): void {
-    this.apiService.fetchData(this.OMDB_ROOT_URL, movieId, this.OMDB_API_KEY)
+    override fetchData(movieId: string): void {
+    this.apiService.fetchMovieData(this.OMDB_ROOT_URL, movieId, this.OMDB_API_KEY)
     .subscribe(
       data => {
         console.log("Fetched Data ", data)

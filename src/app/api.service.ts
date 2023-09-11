@@ -10,7 +10,7 @@ export class ApiService {
   readonly Game_API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
   constructor(private http: HttpClient) { }
 
-  fetchData(apiRoot: string, id: string, apiKey: string): Observable<any> {
+  fetchMovieData(apiRoot: string, id: string, apiKey: string): Observable<any> {
     const url = `${apiRoot}?i=${id}&apikey=${apiKey}`;
     return this.http.get(url);
   }
