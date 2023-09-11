@@ -31,30 +31,32 @@ export class GamesComponent extends BaseComponent {
     this.loadData(6);
   }
 
-    override fetchData(gameId: string): void {
+  override fetchData(gameId: string): void {
     // Check if gameId is already loaded
     if (this.loadedIds.has(gameId)) {
       return;
     }
-    
     this.apiService.fetchGameData(gameId)
     .subscribe(
       data => {
         console.log("Fetched Data ", data);
-        
-        data.results.forEach((result: any) => {
+        // Filter out duplicate games by id
+        const uniqueGames = data.results.filter((game: any, index: number, array: any[]) => 
+          array.findIndex((g: any) => g.id === game.id) === index
+        );
+        // Get the first 5 unique games
+        const results = uniqueGames.slice(0, 6);
+        results.forEach((result: any) => {
           const game: GameData = {
             id: result.id,
             name: result.name,
             background_image: result.background_image,
           };
-          
           // Check if game is already in gameData
           if (!this.gameData.some(g => g.id === game.id)) {
             this.gameData.push(game);
           }
         });
-        
         this.loadedIds.add(gameId);
         this.isAPIWorking = true;
       },

@@ -43,7 +43,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     const middleElement = document.querySelector('.middle');
     if(middleElement) {
-    this.scrollSubscription = fromEvent(middleElement, 'scroll').subscribe(() => this.onScrollMovie());
+    this.scrollSubscription = fromEvent(middleElement, 'scroll').subscribe(() => this.onScroll());
     }
   }
 
@@ -51,7 +51,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.scrollSubscription.unsubscribe();
   }
 
-  onScrollMovie() {
+  onScroll() {
     const middleElement = document.querySelector('.middle');
     if (middleElement && (middleElement.scrollHeight - middleElement.scrollTop) <= middleElement.clientHeight) {
       let newMoviesLoaded = 0;
@@ -69,17 +69,6 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
           if(this.lastLoadedIndex >= this.dataIds.length){
             this.toastr.info('All movies loaded!', 'INFO');
       }
-    }
-  }
-
-  onScrollGames() {
-    const middleElement = document.querySelector('.middle');
-    if (middleElement && (middleElement.scrollHeight - middleElement.scrollTop) <= middleElement.clientHeight) {
-      if (this.lastLoadedIndex >= this.dataIds.length) {
-        this.toastr.info('All movies loaded!', 'INFO');
-        return;
-      }
-      this.loadData(6);
     }
   }
 
