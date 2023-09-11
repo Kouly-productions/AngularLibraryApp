@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 //Make us able to use http requests 
 import {HttpClientModule} from '@angular/common/http';
 import { BaseComponent } from './base/base.component';
+import { RemoveThisComponent } from './remove-this/remove-this.component';
 //Does so it's possible to scroll
 
 bootstrapApplication(AppComponent, {
@@ -48,6 +49,7 @@ bootstrapApplication(AppComponent, {
     LoginComponent,
     RegisterComponent,
     BaseComponent,
+    RemoveThisComponent,
   ],
   imports: [
     BrowserModule,
