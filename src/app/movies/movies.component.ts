@@ -19,6 +19,8 @@ export class MoviesComponent extends BaseComponent {
   movieTitle: string = '';
   moviePoster: string = '';
   movieData: any[] = [];
+  displayedMovies: any[] = [];
+  fetchingMovieCount: number = 0;
 
   readonly OMDB_ROOT_URL = 'https://www.omdbapi.com';
   readonly OMDB_API_KEY = 'ac80372a';
@@ -37,14 +39,38 @@ export class MoviesComponent extends BaseComponent {
     this.loadData(4);
   }
 
+  //clear displayed data
+  override clearData(): void {
+    this.displayedMovies = [];
+  } 
+
+  override loadData(count: number): void {
+    let startIndex = (this.currentPage - 1) * count;
+    let endIndex = startIndex + count;
+    let slicedIds = this.dataIds.slice(startIndex, endIndex);
+
+    this.displayedMovies = [];
+    slicedIds.forEach(id => {
+      this.fetchData(id);
+    });
+  }
+
   override fetchData(movieId: string): void {
+    this.fetchingMovieCount++;
     this.apiService.fetchData(this.OMDB_ROOT_URL, movieId, this.OMDB_API_KEY)
     .subscribe(
       data => {
+        this.fetchingMovieCount--;
+        const originalIndex = this.dataIds.indexOf(movieId);
+        data.originalIndex = originalIndex;
         console.log("Fetched Data ", data)
+        this.displayedMovies.push(data);
         this.movieData.push(data);
         this.loadedIds.add(movieId);
-          this.isAPIWorking = true;
+        this.isAPIWorking = true;
+        if(this.fetchingMovieCount === 0) {
+          this.displayedMovies.sort((a, b) => a.originalIndex - b.originalIndex);
+        }
         },
         error => {
           this.toastr.error('API is not working', 'ERROR');

@@ -1,6 +1,6 @@
 <mat-card class="mb-4 container">
     <div class="middle">
-        <div *ngFor="let movie of movieData" class="element-wrapper">
+        <div *ngFor="let movie of displayedMovies" class="element-wrapper">
             <div class="element">
                 <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
                 <h2>{{ movie.Title }}</h2>
@@ -14,4 +14,5 @@
 <div class="pagination-buttons">
     <button class="btn btn-primary" (click)="onPrevPage()">Previous</button>
     <button class="btn btn-primary" (click)="onNextPage()">Next</button>
+    <span id="pageNumber">page {{ currentPage }}</span>
 </div>

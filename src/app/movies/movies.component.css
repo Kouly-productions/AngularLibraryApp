@@ -61,6 +61,16 @@ img{
     display: flex;
     width: 120px;
     height: auto;
-    max-height: 16.4vh;
+    max-height: 15vh;
     border-radius: 10px;
+}
+
+#pageNumber{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    margin-top: -6vh;
+    color: rgb(252, 79, 174);
+    font-weight: bold;
 }

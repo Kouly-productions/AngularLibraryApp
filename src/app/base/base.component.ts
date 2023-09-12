@@ -13,6 +13,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   isDatabaseConnected: boolean = false;
   isAPIWorking: boolean = false;
   dataIds: string[] = [];
+  dataIdsWaitingList: string[] = [];
   loadedIds: Set<string> = new Set();
   currentPage: number = 1;
 
@@ -42,16 +43,18 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   onNextPage() {
+    console.log('Next Page button clicked!');
     this.clearData();
     this.currentPage++;
-    this.loadData(5);
+    this.loadData(4);
   }
 
   onPrevPage() {
+    console.log('Previous Page button clicked!');
     this.clearData();
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.loadData(5);
+      this.loadData(4);
     }
   }
 
