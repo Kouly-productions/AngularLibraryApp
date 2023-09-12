@@ -34,7 +34,7 @@ export class MoviesComponent extends BaseComponent {
     'tt5971474', 'tt10366206', 'tt4589218', 'tt5090568', 'tt0439572', 'tt1745960', 'tt13904644', 'tt0816692', 'tt0468569', 'tt1877830',
     'tt0120338', 'tt1517268'];
 
-    this.loadData(5);
+    this.loadData(4);
   }
 
   override fetchData(movieId: string): void {

@@ -1,6 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { fromEvent } from 'rxjs';
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-base',
@@ -9,14 +8,13 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 })
 
 
-export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
+export class BaseComponent implements OnInit, OnDestroy {
 
   isDatabaseConnected: boolean = false;
   isAPIWorking: boolean = false;
   dataIds: string[] = [];
   loadedIds: Set<string> = new Set();
-  lastLoadedIndex = 5;
-  private scrollSubscription: any;
+  currentPage: number = 1;
 
   constructor(protected toastr: ToastrService) { }
 
@@ -26,61 +24,39 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadData(count: number): void {
-    console.log("Inside loadData of BaseComponent");
-    for (let i = this.lastLoadedIndex; i < this.lastLoadedIndex + count; i++) {
+    let startIndex = (this.currentPage - 1) * count;
+
+    for (let i = startIndex; i < startIndex + count; i++) {
       if (i < this.dataIds.length) {
         this.fetchData(this.dataIds[i]);
-      }
-      else{
-        console.log("Something went wrong")
+      } else {
+        console.log("Something went wrong");
         console.log("Data IDs:", this.dataIds);
-
       }
+    }
   }
-  this.lastLoadedIndex += count;
-}
 
-  ngAfterViewInit() {
-    const middleElement = document.querySelector('.middle');
-    if(middleElement) {
-    this.scrollSubscription = fromEvent(middleElement, 'scroll').subscribe(() => this.onScrollMovie());
+  clearData(): void {
+    console.log("You have to implement clearData!");
+    throw new Error('You have to implement clearData!');
+  }
+
+  onNextPage() {
+    this.clearData();
+    this.currentPage++;
+    this.loadData(5);
+  }
+
+  onPrevPage() {
+    this.clearData();
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadData(5);
     }
   }
 
   ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
-  }
 
-  onScrollMovie() {
-    const middleElement = document.querySelector('.middle');
-    if (middleElement && (middleElement.scrollHeight - middleElement.scrollTop) <= middleElement.clientHeight) {
-      let newMoviesLoaded = 0;
-      //If sccrolled sub, and visible heigth is almost equal to the total ScrollHeight then you are near bottom
-      for (let i = this.lastLoadedIndex; i < this.lastLoadedIndex + 5 && i < this.dataIds.length; i++) {
-        if(newMoviesLoaded >= 5) {
-          break;
-        }
-        if(!this.loadedIds.has(this.dataIds[i])) {
-        this.fetchData(this.dataIds[i])
-        newMoviesLoaded++;
-        }
-      }
-      this.lastLoadedIndex += newMoviesLoaded;
-          if(this.lastLoadedIndex >= this.dataIds.length){
-            this.toastr.info('All movies loaded!', 'INFO');
-      }
-    }
-  }
-
-  onScrollGames() {
-    const middleElement = document.querySelector('.middle');
-    if (middleElement && (middleElement.scrollHeight - middleElement.scrollTop) <= middleElement.clientHeight) {
-      if (this.lastLoadedIndex >= this.dataIds.length) {
-        this.toastr.info('All movies loaded!', 'INFO');
-        return;
-      }
-      this.loadData(6);
-    }
   }
 
   fetchData(movieId: string): void {

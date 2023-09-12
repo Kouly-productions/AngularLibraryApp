@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NgToastService } from 'ng-angular-popup';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import { Post } from './booksPost';
 import { Observable } from 'rxjs';

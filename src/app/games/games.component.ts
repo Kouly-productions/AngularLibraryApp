@@ -16,27 +16,26 @@ export interface GameData {
 })
 
 export class GamesComponent extends BaseComponent {
-  //Variables to store the game data
-  gameId: string = '';
-  gameTitle: string = '';
-  gamePoster: string = '';
+  
   gameData: any[] = [];
 
   constructor(toastr: ToastrService, private apiService: ApiService) {
     super(toastr);
   }
 
-  override ngOnInit(): void {
+    override ngOnInit(): void {
     this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '5679', '28'];
-    this.loadData(6);
+    this.loadData(4);
   }
 
-  override fetchData(gameId: string): void {
-    // Check if gameId is already loaded
+  override clearData(): void {
+    this.gameData = [];
+  }
+
+    override fetchData(gameId: string): void {
     if (this.loadedIds.has(gameId)) {
       return;
     }
-    
     this.apiService.fetchGameData(gameId)
     .subscribe(
       data => {
@@ -50,7 +49,7 @@ export class GamesComponent extends BaseComponent {
           };
           
           // Check if game is already in gameData
-          if (!this.gameData.some(g => g.id === game.id)) {
+          if (!this.gameData.some(g => g.id === game.id) && this.gameData.length < 4) {
             this.gameData.push(game);
           }
         });
