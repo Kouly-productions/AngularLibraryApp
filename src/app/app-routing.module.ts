@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root URL to '/home'
   { path: 'home', component: HomeComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'games', component: GamesComponent },

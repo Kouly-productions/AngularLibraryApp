@@ -15,9 +15,6 @@ import { BaseComponent } from '../base/base.component';
 
 export class MoviesComponent extends BaseComponent {
 
-  movieId: string = '';
-  movieTitle: string = '';
-  moviePoster: string = '';
   movieData: any[] = [];
   displayedMovies: any[] = [];
   fetchingMovieCount: number = 0;
@@ -74,7 +71,7 @@ export class MoviesComponent extends BaseComponent {
   override fetchData(movieId: string): void {
     this.fetchingMovieCount++;
     // Fetch movie data from the API
-    this.apiService.fetchData(this.OMDB_ROOT_URL, movieId, this.OMDB_API_KEY)
+    this.apiService.fetchMovieData(this.OMDB_ROOT_URL, movieId, this.OMDB_API_KEY)
     .subscribe(
       // If the API returns data, it will go through data below
       data => {

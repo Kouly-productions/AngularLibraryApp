@@ -1,6 +1,6 @@
 <mat-card class="mb-4 container">
     <div class="middle">
-        <div *ngFor="let game of gameData" class="element-wrapper">
+        <div *ngFor="let game of displayedGames" class="element-wrapper">
             <div class="element">
                 <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
                 <h2>{{ game.name }}</h2>
@@ -12,6 +12,6 @@
 </mat-card>
 
 <div class="pagination-buttons">
-    <button class="btn btn-primary" (click)="onPrevPage()">Previous</button>
+    <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="onPrevPage()">Previous</button>
     <button class="btn btn-primary" [disabled]="isLastPage()" (click)="onNextPage()">Next</button>
 </div>
