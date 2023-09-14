@@ -29,7 +29,7 @@
 .element-wrapper {
     margin-top: 4.5vh;
     display: flex;
-    align-items: center; /* Tilføjet for at centrere elementerne */
+    align-items: center;
     width: 65%;
     height: 17%;
 }

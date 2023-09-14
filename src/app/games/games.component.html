@@ -13,5 +13,5 @@
 
 <div class="pagination-buttons">
     <button class="btn btn-primary" (click)="onPrevPage()">Previous</button>
-    <button class="btn btn-primary" (click)="onNextPage()">Next</button>
+    <button class="btn btn-primary" [disabled]="isLastPage()" (click)="onNextPage()">Next</button>
 </div>
