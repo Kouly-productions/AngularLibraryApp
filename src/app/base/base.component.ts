@@ -46,7 +46,7 @@ export class BaseComponent implements OnInit, OnDestroy {
     console.log('Next Page button clicked!');
     this.clearData();
     this.currentPage++;
-    this.loadData(4);
+    this.loadData(8);
   }
 
   onPrevPage() {
@@ -54,7 +54,7 @@ export class BaseComponent implements OnInit, OnDestroy {
     this.clearData();
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.loadData(4);
+      this.loadData(8);
     }
   }
 

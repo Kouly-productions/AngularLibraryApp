@@ -18,6 +18,8 @@ export class MoviesComponent extends BaseComponent {
   movieData: any[] = [];
   displayedMovies: any[] = [];
   fetchingMovieCount: number = 0;
+  firstHalfMovies: any[] = [];
+  secondHalfMovies: any[] = [];
 
   //API URL and API Key
   readonly OMDB_ROOT_URL = 'https://www.omdbapi.com';
@@ -33,9 +35,9 @@ export class MoviesComponent extends BaseComponent {
     // Setting dataIds to an array of movie IDs
     this.dataIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt5433140', 'tt9348554', 'tt6718170', 'tt2906216', 
     'tt5971474', 'tt10366206', 'tt4589218', 'tt5090568', 'tt0439572', 'tt1745960', 'tt13904644', 'tt0816692', 'tt0468569', 'tt1877830',
-    'tt0120338', 'tt1517268'];
+    'tt0120338', 'tt1517268', 'tt17024450', 'tt0439572', 'tt9362930', 'tt9224104', 'tt0816692'];
 
-    this.loadData(4);
+    this.loadData(8);
   }
 
   // clear displayed data
@@ -60,10 +62,11 @@ export class MoviesComponent extends BaseComponent {
     });
   }
 
+
   // Check if the current page is the last page
   isLastPage(): boolean {
     // Calculate the maximum page number
-    let maxPage = Math.ceil(this.dataIds.length / 4);
+    let maxPage = Math.ceil(this.dataIds.length / 8);
     return this.currentPage === maxPage;
   }
 
@@ -89,8 +92,11 @@ export class MoviesComponent extends BaseComponent {
         // Setting the API status to true (Is working)
         this.isAPIWorking = true;
         // Sort displayedMovies based on original index if all fetching is done
-        if(this.fetchingMovieCount === 0) {
-          this.displayedMovies.sort((a, b) => a.originalIndex - b.originalIndex);
+          if (this.fetchingMovieCount === 0) {
+            this.displayedMovies.sort((a, b) => a.originalIndex - b.originalIndex);
+            const halfLength = Math.ceil(this.displayedMovies.length / 1);
+            this.firstHalfMovies = this.displayedMovies.slice(0, halfLength);
+            this.secondHalfMovies = this.displayedMovies.slice(halfLength);
           }
         },
         // If the API returns an error, it will go through error below

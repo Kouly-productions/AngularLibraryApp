@@ -1,14 +1,24 @@
 <mat-card class="mb-4 container">
-    <div class="middle">
-        <div *ngFor="let movie of displayedMovies" class="element-wrapper">
-            <div class="element">
-                <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
-                <h2>{{ movie.Title }}</h2>
+    <div class="row-container">
+        <!-- Første række -->
+        <div class="row">
+            <div *ngFor="let movie of firstHalfMovies" class="element-wrapper">
+                <div class="element">
+                    <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
+                    <h2>{{ movie.Title }}</h2>
+                </div>
             </div>
-            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
-            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie();">Info</button>
         </div>
-    </div>
+        <!-- Anden række -->
+        <div class="row row-end">
+            <div *ngFor="let movie of secondHalfMovies" class="element-wrapper">
+                <div class="element">
+                    <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
+                    <h2>{{ movie.Title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>    
 </mat-card>
 
 <div class="pagination-buttons">
