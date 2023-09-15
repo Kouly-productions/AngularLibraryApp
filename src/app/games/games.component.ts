@@ -25,7 +25,8 @@ export class GamesComponent extends BaseComponent {
 
     override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs
-    this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '5679', '28'];
+    this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '5679', '28', '216', '217'
+    ,'218', '219'];
 
     this.loadData(4);
   }
@@ -36,6 +37,7 @@ export class GamesComponent extends BaseComponent {
 
   // load and display movies, by calculating the starting and ending index
   override loadData(count: number): void {
+
     let startIndex = (this.currentPage - 1) * count;
     let endIndex = startIndex + count;
     // Slice the dataIds array to only 4 movies on each page
@@ -59,6 +61,7 @@ export class GamesComponent extends BaseComponent {
   }
 
   override fetchData(gameId: string): void {
+
     this.fetchingGameCount++;
 
     // Fetch movie data from the API

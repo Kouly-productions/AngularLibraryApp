@@ -17,7 +17,7 @@ export class ApiService {
   }
 
   fetchGameData(apiRoot: string, id: string, apiKey: string): Observable<any> {
-    const url = `${apiRoot}/games?i=${id}&key=${apiKey}`;
+    const url = `${apiRoot}/${id}?key=${apiKey}`;
     return this.http.get(url);
   }
 }
