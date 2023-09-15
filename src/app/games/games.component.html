@@ -1,14 +1,24 @@
 <mat-card class="mb-4 container">
-    <div class="middle">
-        <div *ngFor="let game of displayedGames" class="element-wrapper">
-            <div class="element">
-                <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
-                <h2>{{ game.name }}</h2>
+    <div class="row-container">
+        <!-- First row -->
+        <div class="row">
+            <div *ngFor="let game of firstHalfGames" class="element-wrapper">
+                <div class="element">
+                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
+                    <h2>{{ game.name }}</h2>
+                </div>
             </div>
-            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
-            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
         </div>
-    </div>
+        <!-- Second row -->
+        <div class="row"><
+            <div *ngFor="let game of secondHalfGames" class="element-wrapper">
+                <div class="element">
+                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
+                    <h2>{{ game.name }}</h2>
+                </div>
+          </div>
+     </div>
+</div>
 </mat-card>
 
 <div class="pagination-buttons">

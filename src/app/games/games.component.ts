@@ -14,6 +14,8 @@ export class GamesComponent extends BaseComponent {
   gameData: any[] = [];
   displayedGames: any[] = [];
   fetchingGameCount: number = 0;
+  firstHalfGames: any[] = [];
+  secondHalfGames: any[] = [];
 
   readonly Game_API_ROOT_URL = 'https://rawg.io/api/games';
   readonly Game_API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
@@ -28,7 +30,7 @@ export class GamesComponent extends BaseComponent {
     this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '5679', '28', '216', '217'
     ,'218', '219'];
 
-    this.loadData(4);
+    this.loadData(8);
   }
 
   override clearData(): void {
@@ -56,7 +58,7 @@ export class GamesComponent extends BaseComponent {
   // Check if the current page is the last page
   isLastPage(): boolean {
     // Calculate the maximum page number
-    let maxPage = Math.ceil(this.dataIds.length / 4);
+    let maxPage = Math.ceil(this.dataIds.length / 8);
     return this.currentPage === maxPage;
   }
 
@@ -84,6 +86,9 @@ export class GamesComponent extends BaseComponent {
         // Sort displayedGames based on original index if all fetching is done
         if (this.fetchingGameCount === 0) {
           this.displayedGames.sort((a, b) => a.originalIndex - b.originalIndex);
+          const halfLength = Math.ceil(this.displayedGames.length / 1);
+          this.firstHalfGames = this.displayedGames.splice(0, halfLength);
+          this.secondHalfGames = this.displayedGames.splice(halfLength);
         }
       },
       // If the API returns an error, it will go through error below

@@ -1,6 +1,6 @@
 <mat-card class="mb-4 container">
     <div class="row-container">
-        <!-- Første række -->
+        <!-- First row -->
         <div class="row">
             <div *ngFor="let movie of firstHalfMovies" class="element-wrapper">
                 <div class="element" (click)="openDialog(movie.Title,movie.Released,movie.Director,movie.Genre,movie.Runtime,movie.Plot,movie.Ratings,movie.Poster)">
