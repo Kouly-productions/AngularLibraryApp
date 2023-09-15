@@ -3,14 +3,14 @@
         <!-- Første række -->
         <div class="row">
             <div *ngFor="let movie of firstHalfMovies" class="element-wrapper">
-                <div class="element">
+                <div class="element" (click)="openDialog(movie.Title,movie.Released,movie.Director,movie.Genre,movie.Runtime,movie.Plot,movie.Ratings,movie.Poster)">
                     <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
                     <h2>{{ movie.Title }}</h2>
                 </div>
             </div>
         </div>
-        <!-- Anden række -->
-        <div class="row row-end">
+        <!-- And same for the second row -->
+        <div class="row">
             <div *ngFor="let movie of secondHalfMovies" class="element-wrapper">
                 <div class="element">
                     <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
