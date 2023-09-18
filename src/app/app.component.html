@@ -27,21 +27,18 @@
               <a class="nav-link" href="#" [routerLink]="['/mylist']" routerLinkActive="active">My List</a>
             </li>
           </ul>
-           <!--Login Dropdown-->
-           <div class="navbar-nav" >
-            <div class="nav-item-dropdown-login-item">
-              <button class="nav-link dropdown-toggle" #dropdownButton type="button" id="navbarDropdown" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" (click)="showDropdown = !showDropdown">
-                <img src="/assets/IMG/komNU.png" alt="Login Icon" width="50" height="50" draggable="false"
-                  class="d-inline-block-align-top">
-                </button>
-              <div class="dropdown-menu" #dropdown [class.show]="showDropdown" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#" routerLink="/profile" routerLinkActive="active">My Profile</a>
-                <a class="dropdown-item" href="#" [routerLink]="['/register']" routerLinkActive="active">Register</a>
-                <a class="dropdown-item" href="#" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+          <!--Login Dropdown-->
+            <div class="dropdown">
+              <button class="dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown()">
+                <img src="/assets/IMG/komNU.png" id="Login-img" alt="Login Icon" width="55" height="55" draggable="false"
+                  class="d-inline-block align-top">
+              </button>
+              <div class="dropdown-menu" [class.show]="showDropdown" aria-labelledby="navbarDropdown" (click)="closeDropdown()">
+                <a class="dropdown-item" routerLink="/register">Register</a>
+                <a class="dropdown-item" routerLink="/login">Login</a>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </nav>
@@ -49,3 +46,8 @@
   </div>
   <router-outlet></router-outlet>
 </header>
+
+
+<!--
+<ng-toast></ng-toast>
+<button class="btn btn-primary" (click)="showSuccess()">hello</button> -->

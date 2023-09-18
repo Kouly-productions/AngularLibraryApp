@@ -20,13 +20,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog'
-//Make us able to use http requests 
-import {HttpClientModule} from '@angular/common/http';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BaseComponent } from './base/base.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
-//Does so it's possible to scroll
-
+import { MatDialogModule } from '@angular/material/dialog'
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -50,8 +48,10 @@ bootstrapApplication(AppComponent, {
     MyListComponent,
     LoginComponent,
     RegisterComponent,
+    DropdownComponent,
     BaseComponent,
-    PopUpComponent
+    PopUpComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -62,12 +62,12 @@ bootstrapApplication(AppComponent, {
     BrowserAnimationsModule,
     MatCardModule,
     MatMenuModule,
+    MatDialogModule,
     ToastrModule.forRoot(),
     ToastrModule,
     HomeComponent,
     ReactiveFormsModule,
-    HttpClientModule,
-    MatDialogModule
+    HttpClientModule, // Include HttpClientModule here
   ],
   providers: [],
   bootstrap: [AppComponent]

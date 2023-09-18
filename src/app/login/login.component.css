@@ -55,3 +55,7 @@ button{
 #btn[type=submit]:hover{
     background-color: rgb(182, 3, 128);
 }
+
+p{
+    color: #fff;
+}

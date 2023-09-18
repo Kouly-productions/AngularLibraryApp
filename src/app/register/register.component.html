@@ -14,17 +14,7 @@
         <label for="ConfirmPassword">Confirm Password</label>
         <input type="password" id="ConfirmPassword" placeholder="Confirm your password" formControlName="confirmPassword">
         <span *ngIf="reactiveFrom.errors?.['passwordmatcherror']">Password does not match</span>
-        <br><br>
-    
-    
-        <label for="country">Country</label>
-        <select id="country" formControlName="country">
-          <option value="Denmark">Denmark</option>
-          <option value="Sweden">Sweden</option>
-          <option value="USA">USA</option>
-          <option value="England">England</option>
-          <option value="Japan">Japan</option>
-        </select>
+        <br>
     
         <label>Gender:</label>
         <input type="radio" id="male" value="male" formControlName="gender">
@@ -42,8 +32,11 @@
           <label><input type="checkbox" value="Books" formControlName="hobbies">Books</label>
           <label><input type="checkbox" value="Comics" formControlName="hobbies">Comics</label>
         </div>
+        <br>
     
         <button [disabled]="reactiveFrom.invalid" type="submit" value="Submit" id="btn" (click)="showSuccess()">Register</button>
+
+        Allready have an account? <a routerLink="/login">Login</a>
       </form>
     </div>
     </header>

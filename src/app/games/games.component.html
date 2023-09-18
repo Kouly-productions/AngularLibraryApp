@@ -1,28 +1,29 @@
 <mat-card class="mb-4 container">
-    <div class="row-container">
-        <!-- First row -->
-        <div class="row">
-            <div *ngFor="let game of firstHalfGames" class="element-wrapper">
-                <div class="element" (click)="openDialog(game.name,game.released,game.developers,game.genres,game.playtime,game.description_raw,game.rating,game.background_image)">
-                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
-                    <h2>{{ game.name }}</h2>
-                </div>
-            </div>
+    <div class="middle">
+        <div class="element-wrapper">
+            <div class="element"></div>
+            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
+            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
         </div>
-        <!-- Second row -->
-        <div class="row">
-            <div *ngFor="let game of secondHalfGames" class="element-wrapper">
-                <div class="element">
-                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
-                    <h2>{{ game.name }}</h2>
-                </div>
-          </div>
-     </div>
-</div>
+        <div class="element-wrapper">
+            <div class="element"></div>
+            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
+            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
+        </div>
+        <div class="element-wrapper">
+            <div class="element"></div>
+            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
+            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
+        </div>
+        <div class="element-wrapper">
+            <div class="element"></div>
+            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
+            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
+        </div>
+        <div class="element-wrapper">
+            <div class="element"></div>
+            <button class="btn btn-primary" id="addtolist" (click)="AddedToList()">Add to list</button>
+            <button class="btn btn-primary" id="Infolist" (click)="InfoAboutMovie()">Info</button>
+        </div>
+    </div>
 </mat-card>
-
-<div class="pagination-buttons">
-    <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="onPrevPage()">Previous</button>
-    <button class="btn btn-primary" [disabled]="isLastPage()" (click)="onNextPage()">Next</button>
-    <span id="pageNumber">page {{ currentPage }}</span>
-</div>

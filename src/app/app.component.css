@@ -8,8 +8,7 @@
     flex-direction: column;
     
 }
-
-.d-inline-block-align-top{
+#Login-img {
     border-radius: 40px;
 }
 
@@ -28,8 +27,6 @@
     right: 0;
     left: auto;
 }
-
-
 
 p{
     font-size: 20px;
@@ -77,6 +74,3 @@ h1{
     margin-left: 85px;
 }
 
-.dropdown-item{
-    color: rgb(0, 0, 0);
-}
