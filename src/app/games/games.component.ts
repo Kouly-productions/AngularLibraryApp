@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { BaseComponent } from '../base/base.component';
+import { MatDialog } from '@angular/material/dialog'
+import { PopUpComponent } from '../pop-up/pop-up.component';
 
 @Component({
   selector: 'app-games',
@@ -21,9 +23,41 @@ export class GamesComponent extends BaseComponent {
   readonly Game_API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
 
 
-  constructor(toastr: ToastrService, private apiService: ApiService) {
+  constructor(toastr: ToastrService, private apiService: ApiService, private dialogRef : MatDialog ) {
     super(toastr);
   }
+    //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
+    openDialog( gameName: string, gameRelease: string, gameDevelopers: Array<Array<object>>, gameGenre: Array<Array<object>>, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
+      let Genres="";
+      let Developers="";
+      for(let i=0;i<gameGenre.length;i++){
+        if(Genres==""&&gameGenre.length!=1){
+          Genres+=(Object(gameGenre[i]).name)+',';
+        }else{
+          Genres+=(Object(gameGenre[i]).name);
+        }
+      }
+      for(let i=0;i<gameDevelopers.length;i++){
+        if(Developers=="" && gameDevelopers.length!=1){
+          Developers+=(Object(gameDevelopers[i]).name)+',';
+        }else{
+          Developers+=(Object(gameDevelopers[i]).name);
+        }
+      }
+      this.dialogRef.open(PopUpComponent,{
+        data:{
+          title:'Title : '+gameName,
+          release:'Release : '+gameRelease,
+          director:'Developers : '+Developers,
+          genre:'Genre : '+Genres,
+          runtime:'Playtime : '+gamePlaytime,
+          plot:'Description : '+gameDesc,
+          rating:'Rating : '+gameRating,
+          poster:gameImage
+        }
+      });
+      
+    }
 
     override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs

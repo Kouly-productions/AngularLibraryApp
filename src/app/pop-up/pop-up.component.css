@@ -1,11 +1,17 @@
 .body{
-    height: 25%;
+    background: url(/assets/IMG/movieBackground.jpg);
+    width: fit-content;
+    height: fit-content;
 }
 h2{
-    display: flex;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
     color: white;
     padding-left:15px;
     max-width: 1000px;
+
 }
 img{
     float: left;

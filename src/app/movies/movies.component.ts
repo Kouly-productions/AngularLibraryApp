@@ -39,13 +39,13 @@ export class MoviesComponent extends BaseComponent {
   openDialog( movieTitle: string, movieRelease: string, movieDirector: string, movieGenre: string, movieRuntime: string, moviePlot: string,movieRatings:Array<Array<object>>,moviePoster:string){
     this.dialogRef.open(PopUpComponent,{
       data:{
-        title:movieTitle,
-        release:movieRelease,
-        director:movieDirector,
-        genre:movieGenre,
-        runtime:movieRuntime,
-        plot:moviePlot,
-        rating:(Object(movieRatings[0]).Value),
+        title:'Title : '+movieTitle,
+        release:'Release : '+movieRelease,
+        director:'Director : '+movieDirector,
+        genre:'Genre : '+movieGenre,
+        runtime:'Runtime : '+movieRuntime,
+        plot:'Plot : '+moviePlot,
+        rating:'Rating : '+(Object(movieRatings[0]).Value),
         poster:moviePoster
       }
     });
