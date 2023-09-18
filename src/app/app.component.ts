@@ -22,9 +22,10 @@ export class AppComponent {
   constructor(private toast: NgToastService, private http: HttpClient, private _eref: ElementRef) {  }
   title = 'api-angular';
 
+
+
   @ViewChild('dropdown', {static: false }) dropdown: ElementRef;
   @ViewChild('dropdownButton', {static: false }) dropdownButton: ElementRef;
-
   onClick(event: Event) {
     if (this.dropdown && 
         this.dropdown && !this.dropdown.nativeElement.contains(event.target) &&

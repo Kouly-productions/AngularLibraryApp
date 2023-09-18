@@ -7,6 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../api.service';
 import { BaseComponent } from '../base/base.component';
 
+import { MatDialog } from '@angular/material/dialog'
+import { PopUpComponent } from '../pop-up/pop-up.component';
+
+
+
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -27,10 +32,25 @@ export class MoviesComponent extends BaseComponent {
 
 
   //Constructor to use the ToastrService and HttpClient
-  constructor(toastr: ToastrService, private apiService: ApiService) {
+  constructor(toastr: ToastrService, private apiService: ApiService , private dialogRef : MatDialog ) {
     super(toastr);
   }
-
+  //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
+  openDialog( movieTitle: string, movieRelease: string, movieDirector: string, movieGenre: string, movieRuntime: string, moviePlot: string,movieRatings:Array<Array<object>>,moviePoster:string){
+    this.dialogRef.open(PopUpComponent,{
+      data:{
+        title:'Title : '+movieTitle,
+        release:'Release : '+movieRelease,
+        director:'Director : '+movieDirector,
+        genre:'Genre : '+movieGenre,
+        runtime:'Runtime : '+movieRuntime,
+        plot:'Plot : '+moviePlot,
+        rating:'Rating : '+(Object(movieRatings[0]).Value),
+        poster:moviePoster
+      }
+    });
+    
+  }
   override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs
     this.dataIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt5433140', 'tt9348554', 'tt6718170', 'tt2906216', 
