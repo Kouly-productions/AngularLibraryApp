@@ -3,6 +3,7 @@
     width: fit-content;
     height: fit-content;
 }
+
 h2{
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -11,11 +12,26 @@ h2{
     color: white;
     padding-left:15px;
     max-width: 1000px;
-
 }
+
 img{
     float: left;
     width: 300px;
     height: 400px;
     display: flex;
+}
+
+.underBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(0, 101, 253);
+    color: white;
 }

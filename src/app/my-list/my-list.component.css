@@ -9,13 +9,6 @@
     justify-content: center;
     margin-bottom: 10px;
 }
-.btn-primary .fas {
-    color: white;
-  }
-
-.mat-mdc-card{
-    background-color: transparent;
-}
 
 .middle{
     display: flex;
@@ -33,7 +26,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-
     align-items: center;
 }
 
@@ -47,4 +39,24 @@
 
 h2{
     color: white;
+}
+
+.confirmButton{
+    height: 4.1vh;
+    color: white;
+    border-radius: 10px;
+    background-color: rgb(0, 101, 253);
+    border: none;
+}
+
+.inputField{
+    height: 4.1vh;
+    border-radius: 5px;
+    width: 10vw;
+    border: none;
+}
+
+.dropDown{
+    height: 4.1vh;
+    border-radius: 5px;
 }

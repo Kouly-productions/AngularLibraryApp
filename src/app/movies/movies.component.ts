@@ -36,9 +36,11 @@ export class MoviesComponent extends BaseComponent {
     super(toastr);
   }
   //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
-  openDialog( movieTitle: string, movieRelease: string, movieDirector: string, movieGenre: string, movieRuntime: string, moviePlot: string,movieRatings:Array<Array<object>>,moviePoster:string){
+  openDialog( movieId:string,movieTitle: string, movieRelease: string, movieDirector: string, movieGenre: string, movieRuntime: string, moviePlot: string,movieRatings:Array<Array<object>>,moviePoster:string){
+    console.log(movieId);
     this.dialogRef.open(PopUpComponent,{
       data:{
+        id:movieId,
         title:'Title : '+movieTitle,
         release:'Release : '+movieRelease,
         director:'Director : '+movieDirector,

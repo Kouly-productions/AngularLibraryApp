@@ -1,7 +1,6 @@
-<mat-card class="mb-4 container">
     <div class="input-group">
         <div class="form-outline" style="margin-right: 20px;">
-            <select id="sortby" class="form-control">
+            <select id="sortby" class="dropDown">
               <option selected disabled>Sort By</option>
               <option value="movies">Movies</option>
               <option value="games">Games</option>
@@ -9,14 +8,10 @@
               <option value="comics">Comics</option>
             </select>
           </div>
-        <div class="form-outline">
-          <input type="search" id="form1" class="form-control" placeholder="Search"/>
+        <div>
+          <input type="search" id="form1" class="inputField" placeholder="Search"/>
         </div>
-        <button type="button" class="btn btn-primary">
-            <i class="fas fa-search">OK</i>
-        </button>
-        
-
+        <button type="button" class="confirmButton">Ok</button>
       </div>
     
     <div class="middle">
@@ -34,4 +29,3 @@
         <div class="element"><h2>Comics</h2>
           <div class="item"></div></div>
     </div>
-</mat-card>

@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class PopUpComponent implements OnInit {
   //Variabler for the different data we get from Movies
+   id; 
    title;
    release;
    director;
@@ -17,7 +18,8 @@ export class PopUpComponent implements OnInit {
    rating;
    poster;
    //Here we create a cunstructor for Pop-up so that we can the the variables from Movies and change the current variables values
-  constructor(@Inject(MAT_DIALOG_DATA) public data : {title:string,release:string,director:string,genre:string,runtime:string,plot:string,rating:string,poster:string}) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data : {id:string,title:string,release:string,director:string,genre:string,runtime:string,plot:string,rating:string,poster:string}) { 
+    this.id= data.id;
     this.title = data.title;
     this.release = data.release;
     this.director = data.director;

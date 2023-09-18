@@ -27,7 +27,8 @@ export class GamesComponent extends BaseComponent {
     super(toastr);
   }
     //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
-    openDialog( gameName: string, gameRelease: string, gameDevelopers: Array<Array<object>>, gameGenre: Array<Array<object>>, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
+    openDialog( gameId:string,gameName: string, gameRelease: string, gameDevelopers: Array<Array<object>>, gameGenre: Array<Array<object>>, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
+      console.log(gameId);
       let Genres="";
       let Developers="";
       for(let i=0;i<gameGenre.length;i++){
@@ -46,6 +47,7 @@ export class GamesComponent extends BaseComponent {
       }
       this.dialogRef.open(PopUpComponent,{
         data:{
+          id:gameId,
           title:'Title : '+gameName,
           release:'Release : '+gameRelease,
           director:'Developers : '+Developers,
