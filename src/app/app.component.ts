@@ -1,45 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
-import {HttpClient} from '@angular/common/http';
-import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
+  styleUrls: ['./app.component.css']
 })
-
-
 export class AppComponent {
-  showDropdown: boolean = false;
-  readonly ROOT_URL = 'https://jsonplaceholder.typicode.com'
+  @ViewChild('dropdown', { read: ElementRef }) dropdown: ElementRef;
+  showDropdown = false;
 
-  posts: any;
-
-  constructor(private toast: NgToastService, private http: HttpClient, private _eref: ElementRef) {  }
-  title = 'api-angular';
-
-
-
-  @ViewChild('dropdown', {static: false }) dropdown: ElementRef;
-  @ViewChild('dropdownButton', {static: false }) dropdownButton: ElementRef;
-  onClick(event: Event) {
-    if (this.dropdown && 
-        this.dropdown && !this.dropdown.nativeElement.contains(event.target) &&
-        this.dropdownButton && !this.dropdownButton.nativeElement.contains(event.target)) {
-      this.showDropdown = false;
-   }
+  //åbner dropdown menuen
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
   }
 
-  getPosts()
-  {
-    this.posts = this.http.get(this.ROOT_URL + '/posts')
-  }
-
-  showSuccess() {
-    this.toast.warning({detail:"Warning",summary:"Miss something? ",duration:5000})
+  //lukker dropdown menuen når man vælger en option
+  closeDropdown() {
+    this.showDropdown = false;
   }
 }
