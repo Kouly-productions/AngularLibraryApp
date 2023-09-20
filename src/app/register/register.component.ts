@@ -43,6 +43,7 @@ export class RegisterComponent  implements OnInit{
     console.log(this.reactiveFrom);
   }
 
+  //burde sende brugerens data til databasen
   onSubmit(){
     const registrationData = this.reactiveFrom.value;
 

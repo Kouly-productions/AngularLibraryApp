@@ -19,12 +19,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BaseComponent } from './base/base.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -51,6 +52,7 @@ bootstrapApplication(AppComponent, {
     DropdownComponent,
     BaseComponent,
     PopUpComponent,
+    MyProfileComponent,
 
   ],
   imports: [

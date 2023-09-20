@@ -8,6 +8,7 @@ import { ComicsComponent } from './comics/comics.component';
 import { MyListComponent } from './my-list/my-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'mylist', component: MyListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'myprofile', component: MyProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root URL to '/home'
 ];
 
