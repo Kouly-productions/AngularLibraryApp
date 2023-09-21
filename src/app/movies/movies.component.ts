@@ -10,8 +10,6 @@ import { BaseComponent } from '../base/base.component';
 import { MatDialog } from '@angular/material/dialog'
 import { PopUpComponent } from '../pop-up/pop-up.component';
 
-
-
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
@@ -20,6 +18,7 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 
 export class MoviesComponent extends BaseComponent {
 
+  searchTerm: string;
   movieData: any[] = [];
   displayedMovies: any[] = [];
   fetchingMovieCount: number = 0;
@@ -51,8 +50,20 @@ export class MoviesComponent extends BaseComponent {
         poster:moviePoster
       }
     });
-    
   }
+
+  searchMovie(): void {
+    this.apiService.searchMovie(this.searchTerm).subscribe(
+    (data: any) => {
+      this.dataIds = data.Search.map((movie: any) => movie.imdbID);
+      this.loadData(8);
+    },
+    (error: any) => {
+      this.toastr.error('API is not working', 'ERROR');
+      }
+    );
+  }
+
   override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs
     this.dataIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt5433140', 'tt9348554', 'tt6718170', 'tt2906216', 
