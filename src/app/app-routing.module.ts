@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'mylist', component: MyListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'myprofile', component: MyProfileComponent },
+  { path: 'my-profile', component: MyProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root URL to '/home'
 ];
 
