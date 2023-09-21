@@ -42,7 +42,7 @@ input[type=text],[type=email],[type=password],select{
 }
 
 input.ng-invalid.ng-touched{
-    border: red 1px solid;
+    border: red 2px solid;
 }
 
 span{

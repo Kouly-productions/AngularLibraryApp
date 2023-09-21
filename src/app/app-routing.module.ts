@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root URL to '/home'
   { path: 'home', component: HomeComponent },
   { path: 'movies', component: MoviesComponent },
   { path: 'games', component: GamesComponent },
@@ -18,7 +17,8 @@ const routes: Routes = [
   { path: 'comics', component: ComicsComponent },
   { path: 'mylist', component: MyListComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect root URL to '/home'
 ];
 
 @NgModule({

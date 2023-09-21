@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import {HttpClientModule} from '@angular/common/http';
 import { BaseComponent } from './base/base.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 //Does so it's possible to scroll
 
 
@@ -51,7 +52,8 @@ bootstrapApplication(AppComponent, {
     LoginComponent,
     RegisterComponent,
     BaseComponent,
-    PopUpComponent
+    PopUpComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

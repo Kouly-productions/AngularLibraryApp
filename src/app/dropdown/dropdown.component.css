@@ -1,0 +1,14 @@
+.header-nav .dropdown-item{
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+#navbarDropdown{
+    background-color: transparent;
+    border:transparent ;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
