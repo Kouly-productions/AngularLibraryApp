@@ -17,12 +17,17 @@ export class ApiService {
   }
 
   fetchGameData(apiRoot: string, id: string, apiKey: string): Observable<any> {
-    const url = `${apiRoot}/${id}?key=${apiKey}`;
+    const url = `${apiRoot}?i=${id}&apikey=${apiKey}`;
+    return this.http.get(url);
+  }
+
+  searchGame(searchTerm: string): Observable<any> {
+    const url = `https://www.omdbapi.com/?s=${searchTerm}&type=game&apikey=ac80372a`;
     return this.http.get(url);
   }
 
   searchMovie(searchTerm: string): Observable<any> {
-    const url = `https://www.omdbapi.com/?s=${searchTerm}&apikey=ac80372a`;
+    const url = `https://www.omdbapi.com/?s=${searchTerm}&type=movie&apikey=ac80372a`;
     return this.http.get(url);
   }
 }

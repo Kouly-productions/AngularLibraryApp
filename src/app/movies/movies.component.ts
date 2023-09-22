@@ -56,6 +56,7 @@ export class MoviesComponent extends BaseComponent {
     this.apiService.searchMovie(this.searchTerm).subscribe(
     (data: any) => {
       this.dataIds = data.Search.map((movie: any) => movie.imdbID);
+      this.clearData();
       this.loadData(8);
     },
     (error: any) => {
@@ -91,7 +92,7 @@ export class MoviesComponent extends BaseComponent {
     // Loop through each sliced ID and fetch its data
     slicedIds.forEach(id => {
       this.fetchData(id);
-      console.log("Sliced Ids ")
+      console.log("Sliced Ids")
     });
   }
 

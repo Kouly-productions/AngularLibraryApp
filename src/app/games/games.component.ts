@@ -13,58 +13,41 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 
 export class GamesComponent extends BaseComponent {
   
+  searchTerm: string;
   gameData: any[] = [];
   displayedGames: any[] = [];
   fetchingGameCount: number = 0;
   firstHalfGames: any[] = [];
   secondHalfGames: any[] = [];
 
-  readonly Game_API_ROOT_URL = 'https://rawg.io/api/games';
-  readonly Game_API_KEY = '8bcdd82ce88745748f2b622d3e34c1ce';
+  readonly OMDB_ROOT_URL = 'https://www.omdbapi.com';
+  readonly OMDB_API_KEY = 'ac80372a';
 
 
   constructor(toastr: ToastrService, private apiService: ApiService, private dialogRef : MatDialog ) {
     super(toastr);
   }
     //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
-    openDialog( gameId:string,gameName: string, gameRelease: string, gameDevelopers: Array<Array<object>>, gameGenre: Array<Array<object>>, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
-      console.log(gameId);
-      let Genres="";
-      let Developers="";
-      for(let i=0;i<gameGenre.length;i++){
-        if(Genres==""&&gameGenre.length!=1){
-          Genres+=(Object(gameGenre[i]).name)+',';
-        }else{
-          Genres+=(Object(gameGenre[i]).name);
-        }
+      openDialog( gameId:string,gameName: string, gameRelease: string, gameDev: string, gameGenre: string, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
+        console.log(gameId);
+        this.dialogRef.open(PopUpComponent,{
+          data:{
+            id:gameId,
+            title:'Title : '+gameName,
+            release:'Release : '+gameRelease,
+            director:'Developers : '+gameDev,
+            genre:'Genre : '+gameGenre,
+            runtime:'Playtime : '+gamePlaytime,
+            plot:'Description : '+gameDesc,
+            rating:'Rating : '+(Object(gameRating[0]).Value),
+            poster:gameImage
+          }
+        });        
       }
-      for(let i=0;i<gameDevelopers.length;i++){
-        if(Developers=="" && gameDevelopers.length!=1){
-          Developers+=(Object(gameDevelopers[i]).name)+',';
-        }else{
-          Developers+=(Object(gameDevelopers[i]).name);
-        }
-      }
-      this.dialogRef.open(PopUpComponent,{
-        data:{
-          id:gameId,
-          title:'Title : '+gameName,
-          release:'Release : '+gameRelease,
-          director:'Developers : '+Developers,
-          genre:'Genre : '+Genres,
-          runtime:'Playtime : '+gamePlaytime,
-          plot:'Description : '+gameDesc,
-          rating:'Rating : '+gameRating,
-          poster:gameImage
-        }
-      });
       
-    }
-
     override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs
-    this.dataIds = ['200', '201', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '5679', '28', '216', '217'
-    ,'218', '219'];
+    this.dataIds = ['tt2011970', 'tt3554580', 'tt2620204', 'tt1149396', 'tt0433664', 'tt3359066', 'tt5691474', 'tt4214834'];
 
     this.loadData(8);
   }
@@ -98,12 +81,25 @@ export class GamesComponent extends BaseComponent {
     return this.currentPage === maxPage;
   }
 
+  searchGame(): void {
+    this.apiService.searchGame(this.searchTerm).subscribe(
+    (data: any) => {
+      this.dataIds = data.Search.map((game: any) => game.imdbID);
+      this.clearData();
+      this.loadData(8);
+    },
+    (error: any) => {
+      this.toastr.error('API is not working', 'ERROR');
+      }
+    );
+  }
+
   override fetchData(gameId: string): void {
 
     this.fetchingGameCount++;
 
-    // Fetch movie data from the API
-    this.apiService.fetchGameData(this.Game_API_ROOT_URL, gameId, this.Game_API_KEY)
+    // Fetch game data from the API
+    this.apiService.fetchGameData(this.OMDB_ROOT_URL, gameId, this.OMDB_API_KEY)
     .subscribe(
       data => {
         this.fetchingGameCount--;
@@ -111,9 +107,9 @@ export class GamesComponent extends BaseComponent {
         const originalIndex = this.dataIds.indexOf(gameId);
         data.originalIndex = originalIndex;
         console.log("Fetched Data ", data)
-        // Add the fetched movie data to the displayedGames array
+        // Add the fetched game data to the displayedGames array
         this.displayedGames.push(data);
-        // store the fetched movie data in GameData array
+        // store the fetched game data in GameData array
         this.gameData.push(data);
         // Mark the movie ID as loaded
         this.loadedIds.add(gameId);

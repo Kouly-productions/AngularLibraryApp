@@ -15,6 +15,7 @@
 .row-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 60vw;
     height: 75vh;
 }
@@ -31,6 +32,8 @@
     align-items: center;
     width: 30vw;
     height: 17%;
+    max-height: 17%;
+    min-height: 17%;
 }
 
 

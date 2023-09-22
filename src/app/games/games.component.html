@@ -1,10 +1,14 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Games...">
+    <button (click)="searchGame()">Search</button>
+</div>
     <div class="row-container">
         <!-- First row -->
         <div class="row">
             <div *ngFor="let game of firstHalfGames" class="element-wrapper">
-                <div class="element" (click)="openDialog(game.id,game.name,game.released,game.developers,game.genres,game.playtime,game.description_raw,game.rating,game.background_image)">
-                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
-                    <h2>{{ game.name }}</h2>
+                <div class="element" (click)="openDialog(game.imdbID,game.Title,game.Released,game.Director,game.Genre,game.Runtime,game.Plot,game.Ratings,game.Poster)">
+                    <img class="posters" [src]="game.Poster" alt="{{ game.Title }} poster" />
+                    <h2>{{ game.Title }}</h2>
                 </div>
             </div>
         </div>
@@ -12,8 +16,8 @@
         <div class="row">
             <div *ngFor="let game of secondHalfGames" class="element-wrapper">
                 <div class="element">
-                    <img class="posters" [src]="game.background_image" alt="{{ game.name }} poster" />
-                    <h2>{{ game.name }}</h2>
+                    <img class="posters" [src]="game.background_image" alt="{{ game.Title }} poster" />
+                    <h2>{{ game.Title }}</h2>
                 </div>
           </div>
      </div>
