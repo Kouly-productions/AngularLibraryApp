@@ -52,18 +52,26 @@ export class MoviesComponent extends BaseComponent {
     });
   }
 
+  resetData(): void{
+    this.currentPage=1;
+    this.isSearching=false;
+    this.clearData();
+    this.loadData(8);
+    (document.getElementById("search") as HTMLInputElement).value="";
+  }
+
   searchMovie(): void {
-    this.apiService.searchMovie(this.searchTerm).subscribe(
-    (data: any) => {
-      this.dataIds = data.Search.map((movie: any) => movie.imdbID);
-      this.clearData();
-      this.currentPage = 1;
+    this.currentPage=1;
+    this.isSearching=true;
+    (document.getElementById("search") as HTMLInputElement).value="";
+      this.apiService.searchMovie(this.searchTerm).subscribe(
+        (data: any) => {
+          this.searchDataId = data.Search.map((movie: any) => movie.imdbID);
+          this.clearData();
+          this.currentPage = 1;
       this.loadData(8);
-    },
-    (error: any) => {
-      this.toastr.error('API is not working', 'ERROR');
-      }
-    );
+        }
+      );
   }
 
   override ngOnInit(): void {
@@ -71,6 +79,7 @@ export class MoviesComponent extends BaseComponent {
     this.dataIds = ['tt15398776', 'tt6791350', 'tt8589698', 'tt5433140', 'tt9348554', 'tt6718170', 'tt2906216', 
     'tt5971474', 'tt10366206', 'tt4589218', 'tt5090568', 'tt0439572', 'tt1745960', 'tt13904644', 'tt0816692', 'tt0468569', 'tt1877830',
     'tt0120338', 'tt1517268', 'tt17024450', 'tt0439572', 'tt9362930', 'tt9224104', 'tt0816692'];
+    this.searchDataId=[];
 
     this.loadData(8);
   }
@@ -85,7 +94,13 @@ export class MoviesComponent extends BaseComponent {
     let startIndex = (this.currentPage - 1) * count;
     let endIndex = startIndex + count;
     // Slice the dataIds array to only 4 movies on each page
-    let slicedIds = this.dataIds.slice(startIndex, endIndex);
+    let slicedIds=[''];
+    if(this.isSearching==false){
+       slicedIds = this.dataIds.slice(startIndex, endIndex);
+    }else{
+      slicedIds = this.searchDataId.slice(startIndex,endIndex);
+    }
+
 
     // Empty array
     this.displayedMovies = [];
@@ -101,7 +116,13 @@ export class MoviesComponent extends BaseComponent {
   // Check if the current page is the last page
   isLastPage(): boolean {
     // Calculate the maximum page number
-    let maxPage = Math.ceil(this.dataIds.length / 8);
+    let maxPage;
+    if(this.isSearching==false){
+      maxPage = Math.ceil(this.dataIds.length / 8);
+    }else{
+      maxPage = Math.ceil(this.searchDataId.length/8);
+    }
+
     return this.currentPage === maxPage;
   }
 
