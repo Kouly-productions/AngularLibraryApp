@@ -68,7 +68,8 @@ export class MoviesComponent extends BaseComponent {
         (data: any) => {
           this.searchDataId = data.Search.map((movie: any) => movie.imdbID);
           this.clearData();
-          this.loadData(8);
+          this.currentPage = 1;
+      this.loadData(8);
         }
       );
   }
