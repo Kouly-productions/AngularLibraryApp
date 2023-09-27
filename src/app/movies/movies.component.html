@@ -1,6 +1,7 @@
 <div class="search-container">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search Movies...">
+    <input id="search" type="text" [(ngModel)]="searchTerm" placeholder="Search Movies...">
     <button (click)="searchMovie()">Search</button>
+    <button (click)="resetData()">Reset</button>
 </div>
     <div class="row-container">
         <!-- First row -->

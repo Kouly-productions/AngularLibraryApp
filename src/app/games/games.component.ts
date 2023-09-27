@@ -48,6 +48,7 @@ export class GamesComponent extends BaseComponent {
     override ngOnInit(): void {
     // Setting dataIds to an array of movie IDs
     this.dataIds = ['tt2011970', 'tt3554580', 'tt2620204', 'tt1149396', 'tt0433664', 'tt3359066', 'tt5691474', 'tt4214834'];
+    this.searchDataId=[];
 
     this.loadData(8);
   }
@@ -62,7 +63,13 @@ export class GamesComponent extends BaseComponent {
     let startIndex = (this.currentPage - 1) * count;
     let endIndex = startIndex + count;
     // Slice the dataIds array to only 4 movies on each page
-    let slicedIds = this.dataIds.slice(startIndex, endIndex);
+
+    let slicedIds=[''];
+    if(this.isSearching==false){
+       slicedIds = this.dataIds.slice(startIndex, endIndex);
+    }else{
+      slicedIds = this.searchDataId.slice(startIndex,endIndex);
+    }
 
     // Empty array
     this.displayedGames = [];
@@ -77,14 +84,32 @@ export class GamesComponent extends BaseComponent {
   // Check if the current page is the last page
   isLastPage(): boolean {
     // Calculate the maximum page number
-    let maxPage = Math.ceil(this.dataIds.length / 8);
+    let maxPage;
+    if(this.isSearching==false){
+      maxPage = Math.ceil(this.dataIds.length / 8);
+    }else{
+      maxPage = Math.ceil(this.searchDataId.length/8);
+    }
+    
     return this.currentPage === maxPage;
   }
 
+  resetData(): void{
+    this.currentPage=1;
+    this.isSearching=false;
+    this.clearData();
+    this.loadData(8);
+    (document.getElementById("search") as HTMLInputElement).value="";
+  }
+
+
   searchGame(): void {
+    this.currentPage=1;
+    this.isSearching=true;
+    (document.getElementById("search") as HTMLInputElement).value="";
     this.apiService.searchGame(this.searchTerm).subscribe(
     (data: any) => {
-      this.dataIds = data.Search.map((game: any) => game.imdbID);
+      this.searchDataId = data.Search.map((game: any) => game.imdbID);
       this.clearData();
       this.loadData(8);
     },
