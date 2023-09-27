@@ -7,7 +7,7 @@
         <div class="row">
             <div *ngFor="let movie of firstHalfMovies" class="element-wrapper">
                 <div class="element" (click)="openDialog(movie.imdbID,movie.Title,movie.Released,movie.Director,movie.Genre,movie.Runtime,movie.Plot,movie.Ratings,movie.Poster)">
-                    <img class="posters" [src]="movie.Poster" alt="{{ movie.Title }} poster">
+                    <img class="posters" draggable="false" [src]="movie.Poster" alt="{{ movie.Title }} poster">
                     <h2>{{ movie.Title }}</h2>
                 </div>
             </div>
