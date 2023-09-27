@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn, ValidationErrors} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { matchpassword} from './matchpassword-validator'
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
 

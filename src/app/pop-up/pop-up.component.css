@@ -35,3 +35,8 @@ button{
     background-color: rgb(0, 101, 253);
     color: white;
 }
+
+img{
+    max-height: 37.8vh;
+    max-width: 14vw;
+}
