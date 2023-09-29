@@ -14,4 +14,12 @@ export class MyListComponent {
     this.moviesList = this.listService.getMoviesList();
     this.gamesList = this.listService.getGamesList();
   }
+
+  deleteMovie(index: number): void {
+    this.moviesList.splice(index, 1);
+  }      
+
+  deleteGame(index: number): void {
+    this.gamesList.splice(index, 1);
+  }      
 }

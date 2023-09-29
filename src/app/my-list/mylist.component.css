@@ -22,6 +22,7 @@
 }
 
 .element{
+    position: relative;
     background-color: transparent;
     width: 10%;
     height: 100%;
@@ -65,4 +66,18 @@ h2{
 .dropDown{
     height: 4.1vh;
     border-radius: 5px;
+}
+
+.DeleteMovie{
+    position: absolute;
+    width: 2vw;
+    height: 2vw;
+    right: 0.7vw;
+    background-color: #ff00004d;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 30px;
+    color: red;
+    z-index: 999;
 }

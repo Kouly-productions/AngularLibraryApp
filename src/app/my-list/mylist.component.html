@@ -16,12 +16,14 @@
     
     <div class="middle">
         <div class="element"><h2>Movies</h2>
-          <div class="item" *ngFor="let movie of moviesList">
+          <div class="item" *ngFor="let movie of moviesList; let i = index">
+            <button class="DeleteMovie" (click)="deleteMovie(i); $event.stopPropagation()">X</button>
             <img [src]="movie.Poster" alt="poster" draggable="false">
           </div>
         </div>
         <div class="element"><h2>Games</h2>
-          <div class="item" *ngFor="let game of gamesList">
+          <div class="item" *ngFor="let game of gamesList; let i = index">
+            <button class="DeleteMovie" (click)="deleteGame(i); $event.stopPropagation()">X</button>
             <img [src]="game.gameImage" alt="poster" draggable="false">
           </div>
         </div>

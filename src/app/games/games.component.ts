@@ -49,6 +49,7 @@ export class GamesComponent extends BaseComponent {
           //Send IDs to list.service.ts
           this.listService.addToGamesList(id, gameImage);
           console.log('Added to list, current list is:', this.listService.getGamesList());
+          this.toastr.success('Game added to list', 'Added');
         });
     
         //Listens to when the dialog is closed

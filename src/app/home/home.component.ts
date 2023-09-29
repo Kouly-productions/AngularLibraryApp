@@ -1,7 +1,5 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { NgToastService } from 'ng-angular-popup';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { GalleryModule, GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({

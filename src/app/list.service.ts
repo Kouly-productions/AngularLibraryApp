@@ -11,7 +11,11 @@ export class ListService {
     const movie = { id, Poster };
     this.moviesList.push(movie);
     console.log('Current moviesList:', this.moviesList);
-  }
+}
+
+    getMoviesList(): string[] {
+        return this.moviesList;
+    }
 
   addToGamesList(id: string, gameImage: string): void {
     const game = { id, gameImage };
@@ -19,9 +23,6 @@ export class ListService {
     console.log('Current gamesList:', this.gamesList);
   }
 
-  getMoviesList(): string[] {
-    return this.moviesList;
-  }
 
   getGamesList(): string[] {
     return this.gamesList;
