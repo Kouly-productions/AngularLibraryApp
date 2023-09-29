@@ -5,6 +5,7 @@
 .element{
     background-color: rgb(189, 168, 194);
     width: 100%;
+    max-height: 15vh;
     box-shadow: 0 0 30px rgba(255, 0, 179, 0.685);
     display: flex;
     justify-content: flex-start;
