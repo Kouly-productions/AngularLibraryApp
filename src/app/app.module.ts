@@ -11,7 +11,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { GamesComponent } from './games/games.component';
 import { BooksComponent } from './books/books.component';
 import { ComicsComponent } from './comics/comics.component';
-import { MyListComponent } from './my-list/my-list.component';
+import { MyListComponent } from './my-list/mylist.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';

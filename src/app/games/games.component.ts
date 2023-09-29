@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { BaseComponent } from '../base/base.component';
 import { MatDialog } from '@angular/material/dialog'
 import { PopUpComponent } from '../pop-up/pop-up.component';
+import { ListService } from '../list.service';
 
 @Component({
   selector: 'app-games',
@@ -24,13 +25,13 @@ export class GamesComponent extends BaseComponent {
   readonly OMDB_API_KEY = 'ac80372a';
 
 
-  constructor(toastr: ToastrService, private apiService: ApiService, private dialogRef : MatDialog ) {
+  constructor(toastr: ToastrService, private apiService: ApiService, private dialogRef : MatDialog, private listService: ListService) {
     super(toastr);
   }
-    //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
+    //Function for the data to be avialable from Games to Pop-UP and making variables that we send to Pop-Up
       openDialog( gameId:string,gameName: string, gameRelease: string, gameDev: string, gameGenre: string, gamePlaytime: string, gameDesc: string,gameRating:string,gameImage:string){
         console.log(gameId);
-        this.dialogRef.open(PopUpComponent,{
+        const dialogRef = this.dialogRef.open(PopUpComponent,{
           data:{
             id:gameId,
             title:'Title : '+gameName,
@@ -43,6 +44,18 @@ export class GamesComponent extends BaseComponent {
             poster:gameImage
           }
         });        
+          //Listen to emitter from pop-up
+        const addToListSubscription = dialogRef.componentInstance.addToList.subscribe((id:string)=>{
+          //Send IDs to list.service.ts
+          this.listService.addToGamesList(id, gameImage);
+          console.log('Added to list, current list is:', this.listService.getGamesList());
+        });
+    
+        //Listens to when the dialog is closed
+        dialogRef.afterClosed().subscribe(()=>{
+          //Stops listening for the emitter, because you can't add to list while the dialog is closed
+          addToListSubscription.unsubscribe();
+        });
       }
       
     override ngOnInit(): void {
@@ -128,7 +141,7 @@ export class GamesComponent extends BaseComponent {
     .subscribe(
       data => {
         this.fetchingGameCount--;
-        // Get the original index of the movie ID from dataIds array
+        // Get the original index of the game ID from dataIds array
         const originalIndex = this.dataIds.indexOf(gameId);
         data.originalIndex = originalIndex;
         console.log("Fetched Data ", data)
@@ -136,7 +149,7 @@ export class GamesComponent extends BaseComponent {
         this.displayedGames.push(data);
         // store the fetched game data in GameData array
         this.gameData.push(data);
-        // Mark the movie ID as loaded
+        // Mark the game ID as loaded
         this.loadedIds.add(gameId);
         // Setting the API status to true (Is working)
         this.isAPIWorking = true;

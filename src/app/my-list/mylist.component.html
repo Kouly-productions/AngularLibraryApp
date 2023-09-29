@@ -16,11 +16,14 @@
     
     <div class="middle">
         <div class="element"><h2>Movies</h2>
-          <div class="item"></div>
-          <div class="item"></div>
+          <div class="item" *ngFor="let movie of moviesList">
+            <img [src]="movie.Poster" alt="poster" draggable="false">
+          </div>
         </div>
         <div class="element"><h2>Games</h2>
-          <div class="item"></div>
+          <div class="item" *ngFor="let game of gamesList">
+            <img [src]="game.gameImage" alt="poster" draggable="false">
+          </div>
         </div>
         <div class="element"><h2>Books</h2>
           <div class="item"></div>

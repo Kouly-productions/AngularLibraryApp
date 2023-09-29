@@ -9,6 +9,7 @@ import { BaseComponent } from '../base/base.component';
 
 import { MatDialog } from '@angular/material/dialog'
 import { PopUpComponent } from '../pop-up/pop-up.component';
+import { ListService } from '../list.service';
 
 @Component({
   selector: 'app-movies',
@@ -31,13 +32,13 @@ export class MoviesComponent extends BaseComponent {
 
 
   //Constructor to use the ToastrService and HttpClient
-  constructor(toastr: ToastrService, private apiService: ApiService , private dialogRef : MatDialog ) {
+  constructor(toastr: ToastrService, private apiService: ApiService , private dialogRef : MatDialog, private listService: ListService) {
     super(toastr);
   }
   //Function for the data to be avialable from Movies to Pop-UP and making variables that we send to Pop-Up
   openDialog( movieId:string,movieTitle: string, movieRelease: string, movieDirector: string, movieGenre: string, movieRuntime: string, moviePlot: string,movieRatings:Array<Array<object>>,moviePoster:string){
     console.log(movieId);
-    this.dialogRef.open(PopUpComponent,{
+    const dialogRef = this.dialogRef.open(PopUpComponent,{
       data:{
         id:movieId,
         title:'Title : '+movieTitle,
@@ -50,7 +51,21 @@ export class MoviesComponent extends BaseComponent {
         poster:moviePoster
       }
     });
+    //Listen to emitter from pop-up
+    const addToListSubscription = dialogRef.componentInstance.addToList.subscribe((id:string)=>{
+      //Send IDs to list.service.ts
+      this.listService.addToMoviesList(id, moviePoster);
+      console.log('Added to list, current list is:', this.listService.getMoviesList());
+    });
+
+    //Listens to when the dialog is closed
+    dialogRef.afterClosed().subscribe(()=>{
+      //Stops listening for the emitter, because you can't add to list while the dialog is closed
+      addToListSubscription.unsubscribe();
+    });
   }
+
+
 
   resetData(): void{
     this.currentPage=1;

@@ -1,12 +1,15 @@
 import { Component, OnInit, Input , Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
   styleUrls: ['./pop-up.component.css']
 })
+
 export class PopUpComponent implements OnInit {
+  @Output() addToList = new EventEmitter<string>();
   //Variabler for the different data we get from Movies
    id; 
    title;
@@ -28,6 +31,10 @@ export class PopUpComponent implements OnInit {
     this.plot = data.plot;
     this.rating = data.rating;
     this.poster = data.poster;
+  }
+
+  addToMyList(){
+    this.addToList.emit(this.id);
   }
 
   ngOnInit(): void {
