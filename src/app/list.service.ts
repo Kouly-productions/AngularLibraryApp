@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 export class ListService {
   private moviesList: any[] = [];
   private gamesList: any[] = [];
-
   constructor(private toastr: ToastrService) { 
 
   }
@@ -22,7 +21,6 @@ export class ListService {
     this.toastr.success('Added');
   }
   else{
-    console.log('Already in list');
     this.toastr.warning('Already in list');
   }
   console.log('Current moviesList:', this.moviesList);
