@@ -55,8 +55,6 @@ export class MoviesComponent extends BaseComponent {
     const addToListSubscription = dialogRef.componentInstance.addToList.subscribe((id:string)=>{
       //Send IDs to list.service.ts
       this.listService.addToMoviesList(id, moviePoster);
-      console.log('Added to list, current list is:', this.listService.getMoviesList());
-      this.toastr.success('Movie added to list', 'Added');
     });
 
     //Listens to when the dialog is closed
