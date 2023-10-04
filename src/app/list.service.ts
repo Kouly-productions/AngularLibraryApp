@@ -12,11 +12,11 @@ export class ListService {
   }
 
 
-  addToMoviesList(id: string, Poster: string): void {
+  addToMoviesList(id: string,Title:String,Release:String,Director:String,Genre:String,Runtime:String,Plot:String,Ratings:String, Poster: string): void {
     const exists = this.moviesList.some(movie => movie.id === id);
 
     if (!exists) {
-    const movie = { id, Poster };
+    const movie = { id,Title,Release,Director,Genre,Runtime,Plot,Ratings, Poster };
     this.moviesList.push(movie);
     this.toastr.success('Added');
   }
@@ -30,11 +30,11 @@ export class ListService {
         return this.moviesList;
     }
 
-  addToGamesList(id: string, gameImage: string): void {
+  addToGamesList(id: string,Title:String,Release:String,Developers:String,Genre:String,Playtime:String,Description:String,Ratings:String, gameImage: string): void {
     const exists = this.gamesList.some(game => game.id === id);
 
     if (!exists) {
-      const game = { id, gameImage };
+      const game = { id,Title,Release,Developers,Genre,Playtime,Description,Ratings, gameImage };
       this.gamesList.push(game);
       console.log('Current gamesList:', this.gamesList);
       this.toastr.success('Added');

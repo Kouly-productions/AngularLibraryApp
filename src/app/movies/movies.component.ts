@@ -54,7 +54,7 @@ export class MoviesComponent extends BaseComponent {
     //Listen to emitter from pop-up
     const addToListSubscription = dialogRef.componentInstance.addToList.subscribe((id:string)=>{
       //Send IDs to list.service.ts
-      this.listService.addToMoviesList(id, moviePoster);
+      this.listService.addToMoviesList(id,movieTitle,movieRelease,movieDirector,movieGenre,movieRuntime,moviePlot,(Object(movieRatings[0]).Value), moviePoster);
     });
 
     //Listens to when the dialog is closed

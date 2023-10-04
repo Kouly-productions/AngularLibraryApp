@@ -47,7 +47,7 @@ export class GamesComponent extends BaseComponent {
           //Listen to emitter from pop-up
         const addToListSubscription = dialogRef.componentInstance.addToList.subscribe((id:string)=>{
           //Send IDs to list.service.ts
-          this.listService.addToGamesList(id, gameImage);
+          this.listService.addToGamesList(id,gameName,gameRelease,gameDev,gameGenre,gamePlaytime,gameDesc,(Object(gameRating[0]).Value), gameImage);
         });
     
         //Listens to when the dialog is closed
