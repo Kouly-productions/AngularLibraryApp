@@ -44,8 +44,6 @@ export class MyListComponent {
             poster:movie.Poster
           }
         });
-      }else{
-        break   
       }
     };
     for(let game of this.gamesList){
