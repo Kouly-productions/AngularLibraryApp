@@ -26,7 +26,7 @@ export class ListService {
   console.log('Current moviesList:', this.moviesList);
 }
 
-    getMoviesList(): string[] {
+    getMoviesList(): any[] {
         return this.moviesList;
     }
 
@@ -34,7 +34,7 @@ export class ListService {
     const exists = this.gamesList.some(game => game.id === id);
 
     if (!exists) {
-      const game = { id,Title,Release,Developers,Genre,Playtime,Description,Ratings, gameImage };
+      const game = { id, gameImage };
       this.gamesList.push(game);
       console.log('Current gamesList:', this.gamesList);
       this.toastr.success('Added');
@@ -44,7 +44,7 @@ export class ListService {
   }
 
 
-  getGamesList(): string[] {
+  getGamesList(): any[] {
     return this.gamesList;
   }
 }
