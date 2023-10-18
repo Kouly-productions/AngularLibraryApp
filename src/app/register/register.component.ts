@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,7 +18,8 @@ export class RegisterComponent  implements OnInit{
   //Udskriver lille besked til bruger om at registering er done
   constructor(private toastr: ToastrService, private httpClient: HttpClient ) {}
   showSuccess(): void {
-    this.toastr.success('Registration complete');
+    this.CreateUser();
+    
   }
   
 
@@ -25,12 +27,8 @@ export class RegisterComponent  implements OnInit{
   ngOnInit(){
     this.reactiveFrom = new FormGroup({
       firstname: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required,Validators.email]),
       password: new FormControl(null, Validators.required),
       confirmPassword: new FormControl(null, Validators.required),
-      gender: new FormControl('male'),
-      country: new FormControl(null),
-      hobbies: new FormControl(null)
     },
     {
       //tjekker om validators passer med matchpassword
@@ -42,22 +40,22 @@ export class RegisterComponent  implements OnInit{
   login(){
     console.log(this.reactiveFrom);
   }
-
-  onSubmit(){
-    const registrationData = this.reactiveFrom.value;
-
-    // Make a POST request to your API's registration endpoint
-    this.httpClient.post('https://localhost:7084/api/User/SignUp', registrationData).subscribe(
-      (response) => {
-        // Registration successful
-        this.showSuccess();
+  CreateUser(){
+    const username = (<HTMLInputElement>document.getElementById('fname')).value;
+    const password = (<HTMLInputElement>document.getElementById('password')).value;
+    const conPassword = (<HTMLInputElement>document.getElementById('ConfirmPassword')).value;
+    const apiUrl = 'http://localhost:3001/api/register';
+  
+    this.httpClient.post(apiUrl, { username , password}).subscribe(
+      (response:any) => {
+        this.toastr.success('User created successfully');
+          (<HTMLInputElement>document.getElementById('fname')).value = "";
+          (<HTMLInputElement>document.getElementById('password')).value = "";
+          (<HTMLInputElement>document.getElementById('ConfirmPassword')).value="";
       },
       (error) => {
-        // Registration failed, handle the error
-        console.error('Registration failed:', error);
-        // You can also show an error message to the user using Toastr or another notification library.
+        this.toastr.error('Error creating user',error);
       }
     );
   }
-
 }

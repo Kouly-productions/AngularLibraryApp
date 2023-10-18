@@ -1,13 +1,10 @@
 <header class="header-nav">
   <div class="form">
     <h2 id="registration">Registration Form</h2>
-    <form [formGroup]="reactiveFrom" (ngSubmit)="onSubmit()">
+    <form [formGroup]="reactiveFrom">
       <label for="fname">Username</label>
       <input type="text" id="fname" placeholder="Username..." formControlName="firstname">
-  
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Your email..." formControlName="email">
-  
+
       <label for="password">Password</label>
       <input type="password" id="password" placeholder="Your password..." formControlName="password">
   
@@ -16,26 +13,7 @@
       <span *ngIf="reactiveFrom.errors?.['passwordmatcherror']">Password does not match</span>
       <br>
   
-      <label>Gender:</label>
-      <input type="radio" id="male" value="male" formControlName="gender">
-      <label for="male">Male</label>
-      <input type="radio" id="female" value="female" formControlName="gender">
-      <label for="female">Female</label>
-      <input type="radio" id="other" formControlName="gender">
-      <label for="other">Other</label>
-      <br><br>
-  
-      <label>Hobbies <i>(Optional)</i></label>
-      <div class="form-inline">
-        <label><input type="checkbox" value="Movies" formControlName="hobbies">Movies</label>
-        <label><input type="checkbox" value="Games" formControlName="hobbies">Games</label>
-        <label><input type="checkbox" value="Books" formControlName="hobbies">Books</label>
-        <label><input type="checkbox" value="Comics" formControlName="hobbies">Comics</label>
-      </div>
-      <br>
-  
       <button [disabled]="reactiveFrom.invalid" type="submit" value="Submit" id="btn" (click)="showSuccess()">Register</button>
-
       Allready have an account? <a routerLink="/login">Login</a>
     </form>
   </div>
