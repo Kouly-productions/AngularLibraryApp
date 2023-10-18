@@ -13,11 +13,13 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 export class MyListComponent {
    moviesList: any[] = [];
    gamesList: any[] = [];
+   searchTerm: string = '';
 
   constructor(private listService: ListService, private toastr: ToastrService,private dialogRef : MatDialog) { 
     this.moviesList = this.listService.getMoviesList();
     this.gamesList = this.listService.getGamesList();
   }
+
 
   deleteMovie(index: number): void {
     this.moviesList.splice(index, 1);
